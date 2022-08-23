@@ -152,6 +152,7 @@ export default function App() {
 
 - `useState()`
 - `useEffect()`
+- [CodeSandbox](https://codesandbox.io/s/show-value-after-typing-gsbvys)
 
 ```javascript
 import { useState, useEffect } from "react";
@@ -184,3 +185,76 @@ export default function App() {
   );
 }
 ```
+
+### Challenge 5: Show/hide
+
+- `useState()` to initial state as `true`.
+- If `showContent` is `true`, then show content, otherwise, show a smiley face.
+- [CodeSandbox](https://codesandbox.io/s/show-hide-2n6ej7?file=/src/App.js)
+
+```javascript
+import { useState } from "react";
+
+export default function App() {
+  const [showContent, setShowContent] = useState(true);
+
+  const handleClick = () => {
+    setShowContent(!showContent);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>
+        {showContent ? "Hide Content" : "Show Content"}
+      </button>
+      {showContent ? <p>Hello, I am here</p> : <p> :) </p>}
+    </div>
+  );
+}
+```
+
+### Challenge 6: Adding to an array
+
+- First to initialize state for text.
+- Second to initialize an empty array as we will be adding text inside it.
+- Use speard operator instead of `push()` to add a todo.
+
+```javascript
+import { useState } from "react";
+
+export default function App() {
+  const [todo, setTodo] = useState("");
+  const [todoLists, setTodoLists] = useState([]);
+
+  const handleChange = (e) => {
+    setTodo(e.target.value);
+  };
+
+  const handleClick = () => {
+    // set id = 0
+    let id = 0;
+    // clear input after adding
+    setTodo("");
+    setTodoLists([...todoLists, { id: id++, todo: todo }]);
+  };
+
+  render(
+    <div>
+      <input type="text" value={todo} onChange={handleChange} />
+      <button onClick={handleClick}>Add</button>
+      <ul>
+        {todoLists.map((todoList) => (
+          <li key={todoList.id}>{todoList.todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+> **Note**
+>
+> - Even an array is mutable, we better treat them as immutable when we store in state.
+> - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
+
+### Challenge 7: Deleting item from an array
