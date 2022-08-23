@@ -258,3 +258,44 @@ export default function App() {
 > - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
 
 ### Challenge 7: Deleting item from an array
+
+```javascript
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  const [todo, setTodo] = useState("");
+  const [todoLists, setTodoLists] = useState([]);
+
+  const handleChange = (e) => {
+    setTodo(e.target.value);
+  };
+
+  const handleAdd = () => {
+    let id = 0;
+    setTodo("");
+    setTodoLists([...todoLists, { id: id++, todo: todo }]);
+  };
+
+  return (
+    <div className="App">
+      <input type="text" value={todo} onChange={handleChange} />
+      <button onClick={handleAdd}>Add</button>
+      <ul>
+        {todoLists.map((todoList) => (
+          <>
+            <li key={todoList.id}>{todoList.todo}</li>
+            <button
+              onClick={() => {
+                setTodoLists(todoLists.filter((t) => t.id !== todoList.id));
+              }}
+            >
+              Delete
+            </button>
+          </>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
