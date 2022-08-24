@@ -12,6 +12,9 @@
 - [Deleting item from an array](#challenge-8-deleting-item-from-an-array)
 - [Accordion P1](#challenge-9-accordion-part-1)
 - [Accordion P2 (Lifting State)](#challenge-10-accordion-part-2-lifting-state)
+- [Synced inputs](#challenge-10-1-synced-inputs)
+
+---
 
 ### Challenge 1 : Convert some HTML to JSX
 
@@ -497,6 +500,8 @@ export default function Panel({ title, children, isActive, onShow }) {
 >
 > [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
 
+---
+
 ### Challenge 10-1: Synced inputs
 
 - This challenge is from [beta reactjs org](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
@@ -592,4 +597,21 @@ export default function Input({ label, value, onChange }) {
     </>
   );
 }
+```
+
+---
+
+### Challenge 10-2: Filtering a list
+
+- Functionality: Filter out the result that matches user input.
+- In this challenge, we will need:
+  - A file contains data - `data.js`.
+  - `SearchBar.js` as input field.
+  - `List.js` to list out all contents from `data.js`.
+  - `FilterableList.js` as parent component that contains two children above.
+
+Original Code
+
+```javascriptX
+
 ```
