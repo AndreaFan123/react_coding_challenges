@@ -418,6 +418,8 @@ export default function Panel({title, children}) {
 - In this challenge, panels are independent, you won't be seeing they both show in the same time when clicking the `show` button.
 - Next, we will need to tweak `Accordion` a bit as we want the only one panel is expanded at any given time, and the other one will be hidden.
 
+---
+
 ### Challenge 10: Accordion Part 2 (Lifting state)
 
 - In last challenge, we managed to create an `Accordion`, but there's one thing we could tweak for better experience.
