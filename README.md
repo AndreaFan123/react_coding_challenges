@@ -496,3 +496,100 @@ export default function Panel({ title, children, isActive, onShow }) {
 > Generally, uncontrolled component is less flexible eventhough it requires less configuration, hence it's easier to use within parent component; Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
 >
 > [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
+
+### Challenge 10-1: Synced inputs
+
+- This challenge is from [beta reactjs org](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
+
+Original code:
+
+```javascript
+// App.js
+import SyncedInputs from "./SyncedInputs";
+
+export default function App() {
+  return (
+    <div>
+      <SyncedInputs />
+    </div>
+  );
+}
+```
+
+```javascript
+// SyncedInputs.js
+
+import Input from "./Input";
+
+export default function SyncedInputs() {
+  return (
+    <>
+      <Input label="First Input" />
+      <Input label="Second Input" />
+    </>
+  );
+}
+```
+
+```javascript
+// Input.js
+
+import { useState } from "react";
+
+export default Input({label}){
+  const [inputTxt, setInputTxt] = useState("");
+
+  const handleChange = (e) => {
+    setInputTxt(e.target.value);
+  }
+
+  return (
+    <>
+    <input
+      type="text"
+      value={inputTxt}
+      onChange={handleChange}
+    />
+    </>
+  )
+}
+```
+
+- The code above won't sync input text as `Input.js` component is an **Uncontrolled component**, it has local state of `inputTxt` and the event `onChange`, it can only affect one component instead of both.
+
+- Let's move local state and event from child component to parent component so that parent component can control the behaviour.
+
+```javascript
+// SyncedInputs.js
+
+import { useState } from "react";
+import Input from "./Input";
+
+export default function SyncedInputs() {
+  const [inputTxt, setInputTxt] = useState("");
+
+  const handleChange = (e) => {
+    setInputTxt(e.target.value);
+  };
+
+  return (
+    <>
+      <Input label="First Input" value={inputTxt} onChange={handleChange} />
+      <Input label="Second Input" value={inputTxt} onChange={handleChange} />
+    </>
+  );
+}
+```
+
+```javascript
+// Input.js
+
+export default function Input({ label, value, onChange }) {
+  return (
+    <>
+      <h3> {label}</h3>
+      <input type="text" value={value} onchnage={onChange} />
+    </>
+  );
+}
+```
