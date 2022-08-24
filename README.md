@@ -148,7 +148,32 @@ export default function App() {
 >
 > [React Docs - useState](https://beta.reactjs.org/apis/react/useState)
 
-### Challenge 4: Show text after typing
+### Challenge 4: Two way data binding
+
+- `useState()` to initialize value.
+- [CodaSandbox](https://codesandbox.io/s/2-way-data-binding-kyh08q?file=/src/App.js)
+
+```javascript
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  const [txt, setTxt] = useState("");
+
+  const handleChnage = (e) => {
+    setTxt(e.target.value);
+  };
+
+  return (
+    <div className="App">
+      <input type="text" value={txt} onChange={handleChnage} />
+      <p>{txt}</p>
+    </div>
+  );
+}
+```
+
+### Challenge 5: Show text after typing
 
 - `useState()`
 - `useEffect()`
@@ -186,7 +211,7 @@ export default function App() {
 }
 ```
 
-### Challenge 5: Show/hide
+### Challenge 6: Show / hide
 
 - `useState()` to initial state as `true`.
 - If `showContent` is `true`, then show content, otherwise, show a smiley face.
@@ -213,7 +238,7 @@ export default function App() {
 }
 ```
 
-### Challenge 6: Adding to an array
+### Challenge 7: Adding to an array
 
 - First to initialize state for text.
 - Second to initialize an empty array as we will be adding text inside it.
@@ -257,7 +282,11 @@ export default function App() {
 > - Even an array is mutable, we better treat them as immutable when we store in state.
 > - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
 
-### Challenge 7: Deleting item from an array
+### Challenge 8: Deleting item from an array
+
+- `filter()` creates a shadow copy of portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+- We use `filter()` instead of `splice()` because `filter()` returns a new array, and it won't change the origin one.
+- [CodeSandbox](https://codesandbox.io/s/removing-item-from-an-array-0k9jee?file=/src/App.js)
 
 ```javascript
 import "./styles.css";
@@ -299,3 +328,62 @@ export default function App() {
   );
 }
 ```
+
+### Challenge 9: Accordion Part 1
+
+- feature: User can click `button` to show content.
+- What kind of component do we need?
+  - `Accordion.js` as parent component that can contain children component and pass data.
+  - `Panel.js` as child component, here we display data passed from parent component.
+    - Here we will add a button so that user can click for showing content.
+
+```javascript
+// App.js
+import Accordion from "./Accordion";
+
+export default function App() {
+  return <Accordion />;
+}
+```
+
+```javascript
+// Accordion.js
+import Panel from "./Panel";
+
+export default function Accordion() {
+  <>
+    <Panel title="Story 1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s
+    </Panel>
+    <Panel title="Story 2">
+      when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries
+    </Panel>
+  </>;
+}
+```
+
+```javascript
+// Panel.js
+import { useState } from "react";
+
+export default function Panel({title, children}) {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleShow = () {
+    setIsActive(true);
+  }
+
+  return (
+    <section>
+      <h3>{title}</h3>
+      {isActive ? <p>{children}</p> : <button onClick={handleShow}>Show</button>}
+    </section>
+  )
+}
+```
+
+- In this challenge, panels are independent, you won't be seeing they both show in the same time when clicking the `show` button.
+- Next, we will need to tweak `Acordion` a bit as the only one panel is expanded at any given time, and the other one will be hidden.
