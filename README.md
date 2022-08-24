@@ -352,7 +352,8 @@ export default function App() {
 import Panel from "./Panel";
 
 export default function Accordion() {
-  <>
+  return (
+      <>
     <Panel title="Story 1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       Lorem Ipsum has been the industry's standard dummy text ever since the
@@ -363,6 +364,7 @@ export default function Accordion() {
       type specimen book. It has survived not only five centuries
     </Panel>
   </>;
+  )
 }
 ```
 
@@ -387,4 +389,69 @@ export default function Panel({title, children}) {
 ```
 
 - In this challenge, panels are independent, you won't be seeing they both show in the same time when clicking the `show` button.
-- Next, we will need to tweak `Acordion` a bit as the only one panel is expanded at any given time, and the other one will be hidden.
+- Next, we will need to tweak `Accordion` a bit as we want the only one panel is expanded at any given time, and the other one will be hidden.
+
+### Challenge 10: Accordion Part 2 (Lifting state)
+
+- In last challenge, we managed to create an `Accordion`, but there's one thing we could tweak for better experience.
+- We want one panel expend and the other one close at same time.
+- The way to implement this is to make parent component `Accordion.js` controls data.
+- In this challenge, we need same components as last one, but adding more to the parent as parent component needs to control which panel is opend.
+- [CodeSandbox](https://codesandbox.io/s/accordion-part-2-lifting-state-p4cptu?file=/src/Panel.js)
+
+```javascript
+// App.js
+import Accordion from "./Accordion";
+
+export default function App() {
+  return <Accordion />;
+}
+```
+
+```javascript
+// Accordion.js
+import { useState } from "react";
+
+export default Accordion() {
+  // initialize active index
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+      <>
+    <Panel
+      title="Story 1"
+      isActive={activeIndex === 1}
+      onShow={() => setActiveIndex(1)}
+      >
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s
+    </Panel>
+    <Panel
+      title="Story 2"
+      isActive={activeIndex === 0}
+      onShow={() => setActiveIndex(0)
+      >
+      when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries
+    </Panel>
+  </>;
+  )
+}
+```
+
+```javascript
+// Panel.js
+import { useState } from "react";
+
+export default function Panel({ title, children, isActive, onShow }) {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <section>
+      <h3>{title}</h3>
+      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
+    </section>
+  );
+}
+```
