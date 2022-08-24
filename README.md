@@ -2,6 +2,17 @@
 
 ## Table of Contents
 
+- [Convert some HTML to JSX](#challenge-1--convert-some-html-to-jsx)
+- [Display array of users to browser](#challenge-2-display-array-of-users-to-browser)
+- [Disable Button](#challenge-3-disable-button)
+- [Two way data binding](#challenge-4-two-way-data-binding)
+- [Show text ater typing](#challenge-5-show-text-after-typing)
+- [Show and Hide](#challenge-6-show--hide)
+- [Adding to an array](#challenge-7-adding-to-an-array)
+- [Deleting item from an array](#challenge-8-deleting-item-from-an-array)
+- [Accordion P1](#challenge-9-accordion-part-1)
+- [Accordion P2 (Lifting State)](#challenge-10-accordion-part-2-lifting-state)
+
 ### Challenge 1 : Convert some HTML to JSX
 
 > **Note**
@@ -62,6 +73,8 @@ export default function Bio() {
 }
 ```
 
+---
+
 ### Challenge 2: Display array of users to browser
 
 - First to create a file called `users.js`
@@ -110,6 +123,8 @@ export default function App() {
 >
 > 2. Must not change.Don’t generate them while rendering.
 
+---
+
 ### Challenge 3: Disable Button
 
 - Set initial state as we need to monitor if there's any value.
@@ -148,6 +163,8 @@ export default function App() {
 >
 > [React Docs - useState](https://beta.reactjs.org/apis/react/useState)
 
+---
+
 ### Challenge 4: Two way data binding
 
 - `useState()` to initialize value.
@@ -172,6 +189,8 @@ export default function App() {
   );
 }
 ```
+
+---
 
 ### Challenge 5: Show text after typing
 
@@ -211,6 +230,8 @@ export default function App() {
 }
 ```
 
+---
+
 ### Challenge 6: Show / hide
 
 - `useState()` to initial state as `true`.
@@ -237,6 +258,8 @@ export default function App() {
   );
 }
 ```
+
+---
 
 ### Challenge 7: Adding to an array
 
@@ -281,6 +304,8 @@ export default function App() {
 >
 > - Even an array is mutable, we better treat them as immutable when we store in state.
 > - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
+
+---
 
 ### Challenge 8: Deleting item from an array
 
@@ -328,6 +353,8 @@ export default function App() {
   );
 }
 ```
+
+---
 
 ### Challenge 9: Accordion Part 1
 
@@ -455,3 +482,15 @@ export default function Panel({ title, children, isActive, onShow }) {
   );
 }
 ```
+
+> **Note**
+>
+> **Review : Uncontrolled vs. controlled component**
+>
+> Usually uncontrolled component is referring to component with local state, for example : `Panel.js` from challenge 9, it controlled the `isActive` state.
+>
+> Controlled component on the other hand is driven by props rather then its local state, for example: `Panel.js` from challenge 10, it is fully controlled by its parent component.
+>
+> Generally, uncontrolled component is less flexible eventhough it requires less configuration, hence it's easier to use within parent component; Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+>
+> [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
