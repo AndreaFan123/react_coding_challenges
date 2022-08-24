@@ -336,6 +336,7 @@ export default function App() {
   - `Accordion.js` as parent component that can contain children component and pass data.
   - `Panel.js` as child component, here we display data passed from parent component.
     - Here we will add a button so that user can click for showing content.
+- [CodeSanbox](https://codesandbox.io/s/accordion-part-1-0syiz2?file=/src/Panel.js)
 
 ```javascript
 // App.js
