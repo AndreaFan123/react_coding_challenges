@@ -487,7 +487,7 @@ export default function Panel({title, children}) {
 > [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
 
 <details>
-<summary> Code <summary>
+<summary> Code </summary>
 
 ```javascript
 // App.js
