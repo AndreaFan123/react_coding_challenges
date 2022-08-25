@@ -35,6 +35,9 @@
 >
 > 3. **CamelCase most of the things!**
 
+<details>
+<summary>Code</summary>
+
 ```javascript
 export default function Bio() {
   return (
@@ -50,7 +53,9 @@ export default function Bio() {
 }
 ```
 
-#### Solution
+</details>
+<details>
+<summary>Solution</summary>
 
 - Add fragment
 - Adjust tags
@@ -76,12 +81,28 @@ export default function Bio() {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 2: Display array of users to browser
 
 - First to create a file called `users.js`
 - [CodeSandbox](https://codesandbox.io/s/display-an-array-ntpnb0)
+- Second to import `users` in `App.js`
+
+> **Note**
+>
+> If we did not provide an unique key props to `li`, it will show warning like this `Warning: Each child in a list should have a unique "key" prop.`
+>
+> **Rules of keys**
+>
+> 1. Must be unique among siblings. However, it’s okay to use the same keys for JSX nodes in different arrays.
+>
+> 2. Must not change.Don’t generate them while rendering.
+
+<details>
+<summary>Code</summary>
 
 ```javascript
 export const users = [
@@ -95,8 +116,6 @@ export const users = [
   },
 ];
 ```
-
-- Second to import `users` in `App.js`
 
 ```javascript
 import "./styles.css";
@@ -116,15 +135,7 @@ export default function App() {
 }
 ```
 
-> **Note**
->
-> If we did not provide an unique key props to `li`, it will show warning like this `Warning: Each child in a list should have a unique "key" prop.`
->
-> **Rules of keys**
->
-> 1. Must be unique among siblings. However, it’s okay to use the same keys for JSX nodes in different arrays.
->
-> 2. Must not change.Don’t generate them while rendering.
+</details>
 
 ---
 
@@ -133,6 +144,21 @@ export default function App() {
 - Set initial state as we need to monitor if there's any value.
 - use `useState()` to set an initial value.
 - [CodeSandbox](https://codesandbox.io/s/disable-submit-btn-9fste3?file=/src/App.js)
+
+> **Note**
+>
+> Review: `useState()`
+>
+> `useState` is a React Hook that lets you add a state variable to your component.
+
+> **Warning**
+>
+> Calling the set function does not change the current state in the already executing code, It only affects what useState will return starting from the next render.
+>
+> [React Docs - useState](https://beta.reactjs.org/apis/react/useState)
+
+<details>
+<summary>Code</summary>
 
 ```javascript
 import { useState } from "react";
@@ -154,24 +180,15 @@ export default function App() {
 }
 ```
 
-> **Note**
->
-> Review: `useState()`
->
-> `useState` is a React Hook that lets you add a state variable to your component.
-
-> **Warning**
->
-> Calling the set function does not change the current state in the already executing code, It only affects what useState will return starting from the next render.
->
-> [React Docs - useState](https://beta.reactjs.org/apis/react/useState)
-
----
+## </details>
 
 ### Challenge 4: Two way data binding
 
 - `useState()` to initialize value.
 - [CodaSandbox](https://codesandbox.io/s/2-way-data-binding-kyh08q?file=/src/App.js)
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 import "./styles.css";
@@ -193,6 +210,8 @@ export default function App() {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 5: Show text after typing
@@ -200,6 +219,9 @@ export default function App() {
 - `useState()`
 - `useEffect()`
 - [CodeSandbox](https://codesandbox.io/s/show-value-after-typing-gsbvys)
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 import { useState, useEffect } from "react";
@@ -233,6 +255,8 @@ export default function App() {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 6: Show / hide
@@ -240,6 +264,9 @@ export default function App() {
 - `useState()` to initial state as `true`.
 - If `showContent` is `true`, then show content, otherwise, show a smiley face.
 - [CodeSandbox](https://codesandbox.io/s/show-hide-2n6ej7?file=/src/App.js)
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 import { useState } from "react";
@@ -262,6 +289,8 @@ export default function App() {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 7: Adding to an array
@@ -269,6 +298,14 @@ export default function App() {
 - First to initialize state for text.
 - Second to initialize an empty array as we will be adding text inside it.
 - Use speard operator instead of `push()` to add a todo.
+
+> **Note**
+>
+> - Even an array is mutable, we better treat them as immutable when we store in state.
+> - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 import { useState } from "react";
@@ -303,10 +340,7 @@ export default function App() {
 }
 ```
 
-> **Note**
->
-> - Even an array is mutable, we better treat them as immutable when we store in state.
-> - **Treat array in React as read-only**, meaning that we shouldn't assign an item inside an array or use methods like `pop()` or `push()`.
+</details>
 
 ---
 
@@ -315,6 +349,9 @@ export default function App() {
 - `filter()` creates a shadow copy of portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
 - We use `filter()` instead of `splice()` because `filter()` returns a new array, and it won't change the origin one.
 - [CodeSandbox](https://codesandbox.io/s/removing-item-from-an-array-0k9jee?file=/src/App.js)
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 import "./styles.css";
@@ -357,6 +394,8 @@ export default function App() {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 9: Accordion Part 1
@@ -367,6 +406,11 @@ export default function App() {
   - `Panel.js` as child component, here we display data passed from parent component.
     - Here we will add a button so that user can click for showing content.
 - [CodeSanbox](https://codesandbox.io/s/accordion-part-1-0syiz2?file=/src/Panel.js)
+- In this challenge, panels are independent, you won't be seeing they both show in the same time when clicking the `show` button.
+- Next, we will need to tweak `Accordion` a bit as we want the only one panel is expanded at any given time, and the other one will be hidden.
+
+<details>
+<summary> Code </summary>
 
 ```javascript
 // App.js
@@ -418,8 +462,7 @@ export default function Panel({title, children}) {
 }
 ```
 
-- In this challenge, panels are independent, you won't be seeing they both show in the same time when clicking the `show` button.
-- Next, we will need to tweak `Accordion` a bit as we want the only one panel is expanded at any given time, and the other one will be hidden.
+</details>
 
 ---
 
@@ -430,6 +473,21 @@ export default function Panel({title, children}) {
 - The way to implement this is to make parent component `Accordion.js` controls data.
 - In this challenge, we need same components as last one, but adding more to the parent as parent component needs to control which panel is opend.
 - [CodeSandbox](https://codesandbox.io/s/accordion-part-2-lifting-state-p4cptu?file=/src/Panel.js)
+
+> **Note**
+>
+> **Review : Uncontrolled vs. controlled component**
+>
+> Usually uncontrolled component is referring to component with local state, for example : `Panel.js` from challenge 9, it controlled the `isActive` state.
+>
+> Controlled component on the other hand is driven by props rather then its local state, for example: `Panel.js` from challenge 10, it is fully controlled by its parent component.
+>
+> Generally, uncontrolled component is less flexible eventhough it requires less configuration, hence it's easier to use within parent component; Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+>
+> [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
+
+<details>
+<summary> Code <summary>
 
 ```javascript
 // App.js
@@ -488,25 +546,14 @@ export default function Panel({ title, children, isActive, onShow }) {
 }
 ```
 
-> **Note**
->
-> **Review : Uncontrolled vs. controlled component**
->
-> Usually uncontrolled component is referring to component with local state, for example : `Panel.js` from challenge 9, it controlled the `isActive` state.
->
-> Controlled component on the other hand is driven by props rather then its local state, for example: `Panel.js` from challenge 10, it is fully controlled by its parent component.
->
-> Generally, uncontrolled component is less flexible eventhough it requires less configuration, hence it's easier to use within parent component; Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
->
-> [React: Lifting state](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
-
----
+## </details>
 
 ### Challenge 10-1: Synced inputs
 
 - This challenge is from [beta reactjs org](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
 
-Original code:
+<details>
+<summary>Original code</summary>
 
 ```javascript
 // App.js
@@ -560,9 +607,14 @@ export default Input({label}){
 }
 ```
 
+</details>
+
 - The code above won't sync input text as `Input.js` component is an **Uncontrolled component**, it has local state of `inputTxt` and the event `onChange`, it can only affect one component instead of both.
 
 - Let's move local state and event from child component to parent component so that parent component can control the behaviour.
+
+<details>
+<summary> Solution </summary>
 
 ```javascript
 // SyncedInputs.js
@@ -599,19 +651,64 @@ export default function Input({ label, value, onChange }) {
 }
 ```
 
+</details>
+
 ---
 
 ### Challenge 10-2: Filtering a list
 
-- Functionality: Filter out the result that matches user input.
+- This challenge is from [beta reactjs org](https://beta.reactjs.org/learn/sharing-state-between-components#lifting-state-up-by-example)
+- Feature: Filter out the result that matches user input (whether is uppercase or lowercase, and it will show up while typing.)
 - In this challenge, we will need:
   - A file contains data - `data.js`.
   - `SearchBar.js` as input field.
   - `List.js` to list out all contents from `data.js`.
   - `FilterableList.js` as parent component that contains two children above.
+  - A way(functionality) of helping us to filter item.
+-
 
-Original Code
+<details>
+<summary> Original Code </summary>
 
-```javascriptX
-
+```javascript
+// data.js
+export const foods = [
+  {
+    id: 0,
+    name: "Sushi",
+    description:
+      "Sushi is a traditional Japanese dish of prepared vinegared rice",
+  },
+  {
+    id: 1,
+    name: "Dal",
+    description:
+      "The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added",
+  },
+  {
+    id: 2,
+    name: "Pierogi",
+    description:
+      "Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water",
+  },
+  {
+    id: 3,
+    name: "Shish kebab",
+    description:
+      "Shish kebab is a popular meal of skewered and grilled cubes of meat.",
+  },
+  {
+    id: 4,
+    name: "Dim sum",
+    description:
+      "Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch",
+  },
+];
 ```
+
+```javascript
+// List.js
+// Here to show up all contents from data.
+```
+
+</details>
