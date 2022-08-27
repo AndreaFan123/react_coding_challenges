@@ -782,12 +782,20 @@ export default FilterTableList() {
   // This function will be responsible for filtering the result that matches query text.
 
   const filterItems = (items, query) => {
+    // make sure that text will be lowercase.
+    query = query.toLowerCase();
+    return items.filter((item) => item.name.split(" ").some(word => word.toLowerCase().startsWith(query)))
+  }
 
+  const results = filterItems(foods, query);
+
+  const handleChange = (e) => {
+    setQuery(e.target.value)
   }
 
   return (
-    <SearchBar title="Seach:"/>
-    <List />
+    <SearchBar title="Seach:" query={query} onChange={handleChange}/>
+    <List items={results}/>
   )
 }
 ```
@@ -795,13 +803,13 @@ export default FilterTableList() {
 ```javascript
 // SearchBar.js
 
-export default SearchBar({title}) {
+export default SearchBar({title, query, onChange}) {
   return (
     <div>
     <h3> </h3>
     <input
       type="text"
-      value={}
+      value={query}
       onChange={handleChange}
     />
     </div>
@@ -811,6 +819,20 @@ export default SearchBar({title}) {
 
 ```javascript
 // List.js
+export default List({items}) {
+  return (
+    <ul>
+      {items.map((item) =>(
+        <li key={item.id}>
+        <span>{item.name}</span>
+        <p>{item.description}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
 ```
 
 </details>
+
+- In code above, we move props from child to parent and make children as "controlled" components.
