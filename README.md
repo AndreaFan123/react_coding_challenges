@@ -546,7 +546,9 @@ export default function Panel({ title, children, isActive, onShow }) {
 }
 ```
 
-## </details>
+</details>
+
+---
 
 ### Challenge 10-1: Synced inputs
 
@@ -707,8 +709,108 @@ export const foods = [
 ```
 
 ```javascript
+// FilterTableList.js
+import List from "./List";
+import SearchBar from "./SearchBar";
+import { foods } from "./data";
+
+export default function FilterableList() {
+  return (
+    <>
+      <SearchBar />
+      <hr />
+      <List items={foods} />
+    </>
+  );
+}
+```
+
+```javascript
 // List.js
-// Here to show up all contents from data.
+function List({ items }) {
+  return (
+    <table>
+      {items.map((food) => (
+        <tr key={food.id}>
+          <td>{food.name}</td>
+          <td>{food.description}</td>
+        </tr>
+      ))}
+    </table>
+  );
+}
+```
+
+```javascript
+// SearchBar.js
+
+import { useState } from "react";
+
+function SearchBar() {
+  const [query, setQuery] = useState("");
+
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
+
+  return (
+    <label>
+      Search: <input value={query} onChange={handleChange} />
+    </label>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary> Optimize </summary>
+
+```javascript
+// FilterTableList.js
+// This is parent component which containt `SearchBar.js` and `List.js`
+
+import SearchBar from "./SearchBar";
+import List from "./List";
+import { useState } from "react";
+import { foods } from "./data"
+
+export default FilterTableList() {
+  const [query, setQuery] = useState("")
+
+  //create a function that accept foods and query as parameters
+  // This function will be responsible for filtering the result that matches query text.
+
+  const filterItems = (items, query) => {
+
+  }
+
+  return (
+    <SearchBar title="Seach:"/>
+    <List />
+  )
+}
+```
+
+```javascript
+// SearchBar.js
+
+export default SearchBar({title}) {
+  return (
+    <div>
+    <h3> </h3>
+    <input
+      type="text"
+      value={}
+      onChange={handleChange}
+    />
+    </div>
+  )
+}
+```
+
+```javascript
+// List.js
 ```
 
 </details>
