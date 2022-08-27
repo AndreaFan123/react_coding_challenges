@@ -13,6 +13,7 @@
 - [Accordion P1](#challenge-9-accordion-part-1)
 - [Accordion P2 (Lifting State)](#challenge-10-accordion-part-2-lifting-state)
 - [Synced inputs](#challenge-10-1-synced-inputs)
+- [Filtering a list](#challenge-10-2-filtering-a-list)
 
 ---
 
