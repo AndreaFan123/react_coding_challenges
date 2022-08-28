@@ -39,7 +39,7 @@
 <details>
 <summary>Code</summary>
 
-```javascript
+```js
 export default function Bio() {
   return (
     <div class="intro">
@@ -61,7 +61,7 @@ export default function Bio() {
 - Add fragment
 - Adjust tags
 
-```javascript
+```js
 export default function Bio() {
   return (
     <>
@@ -105,7 +105,7 @@ export default function Bio() {
 <details>
 <summary>Code</summary>
 
-```javascript
+```js
 export const users = [
   {
     name: "John",
@@ -118,7 +118,7 @@ export const users = [
 ];
 ```
 
-```javascript
+```js
 import "./styles.css";
 import { users } from "./users";
 
@@ -161,7 +161,7 @@ export default function App() {
 <details>
 <summary>Code</summary>
 
-```javascript
+```js
 import { useState } from "react";
 export default function App() {
   // set value
@@ -191,7 +191,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 import "./styles.css";
 import { useState } from "react";
 
@@ -224,7 +224,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -269,7 +269,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 import { useState } from "react";
 
 export default function App() {
@@ -308,7 +308,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 import { useState } from "react";
 
 export default function App() {
@@ -354,7 +354,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 import "./styles.css";
 import { useState } from "react";
 
@@ -413,7 +413,7 @@ export default function App() {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 // App.js
 import Accordion from "./Accordion";
 
@@ -422,7 +422,7 @@ export default function App() {
 }
 ```
 
-```javascript
+```js
 // Accordion.js
 import Panel from "./Panel";
 
@@ -443,7 +443,7 @@ export default function Accordion() {
 }
 ```
 
-```javascript
+```js
 // Panel.js
 import { useState } from "react";
 
@@ -490,7 +490,7 @@ export default function Panel({title, children}) {
 <details>
 <summary> Code </summary>
 
-```javascript
+```js
 // App.js
 import Accordion from "./Accordion";
 
@@ -499,7 +499,7 @@ export default function App() {
 }
 ```
 
-```javascript
+```js
 // Accordion.js
 import { useState } from "react";
 
@@ -531,7 +531,7 @@ export default Accordion() {
 }
 ```
 
-```javascript
+```js
 // Panel.js
 import { useState } from "react";
 
@@ -558,7 +558,7 @@ export default function Panel({ title, children, isActive, onShow }) {
 <details>
 <summary>Original code</summary>
 
-```javascript
+```js
 // App.js
 import SyncedInputs from "./SyncedInputs";
 
@@ -571,7 +571,7 @@ export default function App() {
 }
 ```
 
-```javascript
+```js
 // SyncedInputs.js
 
 import Input from "./Input";
@@ -586,7 +586,7 @@ export default function SyncedInputs() {
 }
 ```
 
-```javascript
+```js
 // Input.js
 
 import { useState } from "react";
@@ -619,7 +619,7 @@ export default Input({label}){
 <details>
 <summary> Solution </summary>
 
-```javascript
+```js
 // SyncedInputs.js
 
 import { useState } from "react";
@@ -641,7 +641,7 @@ export default function SyncedInputs() {
 }
 ```
 
-```javascript
+```js
 // Input.js
 
 export default function Input({ label, value, onChange }) {
@@ -673,7 +673,7 @@ export default function Input({ label, value, onChange }) {
 <details>
 <summary> Original Code </summary>
 
-```javascript
+```js
 // data.js
 export const foods = [
   {
@@ -709,7 +709,7 @@ export const foods = [
 ];
 ```
 
-```javascript
+```js
 // FilterTableList.js
 import List from "./List";
 import SearchBar from "./SearchBar";
@@ -726,7 +726,7 @@ export default function FilterableList() {
 }
 ```
 
-```javascript
+```js
 // List.js
 function List({ items }) {
   return (
@@ -742,7 +742,7 @@ function List({ items }) {
 }
 ```
 
-```javascript
+```js
 // SearchBar.js
 
 import { useState } from "react";
@@ -767,7 +767,7 @@ function SearchBar() {
 <details>
 <summary> Optimize </summary>
 
-```javascript
+```js
 // FilterTableList.js
 // This is parent component which containt `SearchBar.js` and `List.js`
 
@@ -801,7 +801,7 @@ export default FilterTableList() {
 }
 ```
 
-```javascript
+```js
 // SearchBar.js
 
 export default SearchBar({title, query, onChange}) {
@@ -818,7 +818,7 @@ export default SearchBar({title, query, onChange}) {
 }
 ```
 
-```javascript
+```js
 // List.js
 export default List({items}) {
   return (
@@ -837,3 +837,132 @@ export default List({items}) {
 </details>
 
 - In code above, we move props from child to parent and make children as "controlled" components.
+
+### Challenge 11: Fetch data
+
+> **Note**
+>
+> Review: Two common cases in whih we don't need Effects.
+>
+> **1. We don't Effects to transform data for rendering.**
+>
+> When we update a component's state, React will [commit](https://beta.reactjs.org/learn/render-and-commit) the changes to the DOM, updating the screen, then React will run Effects, if the Effect also immidiately updates the state, it restarts the whole process from scratch.
+>
+> We can transform all the data ate the top level of the component without using an Effect, it will automatically re-run whenever props or state change.
+>
+> **2. We don't need Effects to handle user events**
+> Because Effect runs in a early stage, we can't predict user's behaviour, so we can just hanlde user events in the corresponding event handlers.
+
+---
+
+#### Mini challenge 1: Updating state based on props or state
+
+In this mini challenge, try to optimize code from `Original code` to see if there's a better performance solution.
+
+<details>
+<summary> Original Code </summary>
+
+```js
+import { useState, useEffect } from "react";
+
+export default function Form() {
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Smith");
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setFullName(firstName + " " + setLastName);
+  }, [firstName, setLastName]);
+}
+```
+
+</details>
+
+<details>
+<summary> Optimized Code </summary>
+
+```js
+import { useState, useEffect } from "react";
+
+export default function Form() {
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Smith");
+
+  const fullName = firstName + " " + lastName;
+}
+```
+
+</details>
+
+> **Note**
+>
+> Avoid redundant state: If it can be calculated from the exsiting props or state, don't put it in state, calculate it during rerendering.
+
+#### mini challenge 2: Caching expensive calculations
+
+In this mini challenge, try to optimize code from `Original code` to see if there's a better performance solution.
+
+<details>
+<summary> Original Code </summary>
+
+```js
+import { useState, useEffect } from "react";
+
+export default function TodoList({ todos, filter }) {
+  const [newTodo, setNewTodo] = useState("");
+
+  const [visibleTodos, setVisibleTodos] = useState([]);
+  useEffect(() => {
+    setVisibleTodos(getFilteredTodos(todos, filter));
+  }, [todos, filter]);
+
+  // ...
+}
+```
+
+</details>
+
+<details>
+<summary> Optimized Code </summary>
+
+```js
+import { useState, useEffect } from "react";
+
+export default function TodoList({ todos, filter }) {
+  const [newTodo, setNewTodo] = useState("");
+
+  const visibleTodos = getFilteredTodos(todos, filter);
+
+  // ...
+}
+```
+
+</details>
+
+> **Note**
+>
+> If we have a lot of todos, and it slow down `getFilteredTodos()` or vise versa, the `getFilteredTodos()` is already slow, but we do not want to re-render everything, in this case, we can use `useMemo()` to cache / memoize the value (`todos` || `filter`), if they haven't changed, it won't trigger re-render.
+
+<details>
+<summary> useMemo to memoize the value</summary>
+
+```js
+import { useState, useEffect } from "react";
+
+export default function TodoList({ todos, filter }) {
+  const [newTodo, setNewTodo] = useState("");
+
+  const visibleTodos = useMemo(
+    () => getFilteredTodos(todos, filter),
+    [todos, filter]
+  );
+
+  // ...
+}
+```
+
+</details>
+
+> **Note**
+>
+> `useMemo` will remember the value of `getFilteredTodos()` during the initial render, for the next render, it will check if `todos` or `filter` are different, if the values weren't changes, `useMemo` will return the last result.
