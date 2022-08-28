@@ -901,6 +901,8 @@ export default function Form() {
 >
 > Avoid redundant state: If it can be calculated from the exsiting props or state, don't put it in state, calculate it during rerendering.
 
+---
+
 #### mini challenge 2: Caching expensive calculations
 
 In this mini challenge, try to optimize code from `Original code` to see if there's a better performance solution.
