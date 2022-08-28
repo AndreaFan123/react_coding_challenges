@@ -14,6 +14,9 @@
 - [Accordion P2 (Lifting State)](#challenge-10-accordion-part-2-lifting-state)
 - [Synced inputs](#challenge-10-1-synced-inputs)
 - [Filtering a list](#challenge-10-2-filtering-a-list)
+- [Effects related challenges](#challenge-11-fetch-data-challenges-related-to-effects)
+  - [Mini challenge 1](#mini-challenge-1-updating-state-based-on-props-or-state)
+  - [Mini challenge 2](#mini-challenge-2-caching-expensive-calculations)
 
 ---
 
@@ -838,7 +841,7 @@ export default List({items}) {
 
 - In code above, we move props from child to parent and make children as "controlled" components.
 
-### Challenge 11: Fetch data
+### Challenge 11: Fetch data (challenges related to Effects)
 
 > **Note**
 >
@@ -965,4 +968,16 @@ export default function TodoList({ todos, filter }) {
 
 > **Note**
 >
-> `useMemo` will remember the value of `getFilteredTodos()` during the initial render, for the next render, it will check if `todos` or `filter` are different, if the values weren't changes, `useMemo` will return the last result.
+> `useMemo` will remember the value of `getFilteredTodos()` during the initial render, for the next render, it will check if `todos` or `filter` are different, if the values weren't changes, `useMemo` will return the last result; if either of them have changed, `useMemo` will call the wrapped function again and store that result instead.
+
+> **Important**
+>
+> The function we wrap in `useMemo` runs during rendering, this only works for [pure calculations](https://beta.reactjs.org/learn/keeping-components-pure)
+>
+> **Purity: Component as formulas**
+>
+> A pure function is a function with the following characteristics:
+>
+> 1. **Minds its own business.** It does not change any objects or variables that existed before it was called.
+>
+> 2. **Same inputs, same outputs**. Given the same inputs, a pure function should always return the same result.
