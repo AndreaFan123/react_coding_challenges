@@ -860,7 +860,7 @@ export default List({items}) {
 
 #### Mini challenge 1: Updating state based on props or state
 
-In this mini challenge, try to optimize code from `Original code` to see if there's a better performance solution.
+In this mini challenge, try to optimize code from `Original code` to see if there's a better solution.
 
 <details>
 <summary> Original Code </summary>
@@ -905,7 +905,7 @@ export default function Form() {
 
 #### mini challenge 2: Caching expensive calculations
 
-In this mini challenge, try to optimize code from `Original code` to see if there's a better performance solution.
+In this mini challenge, try to optimize code from `Original code` to see if there's a better solution.
 
 <details>
 <summary> Original Code </summary>
