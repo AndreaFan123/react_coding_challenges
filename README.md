@@ -972,7 +972,7 @@ export default function TodoList({ todos, filter }) {
 >
 > `useMemo` will remember the value of `getFilteredTodos()` during the initial render, for the next render, it will check if `todos` or `filter` are different, if the values weren't changes, `useMemo` will return the last result; if either of them have changed, `useMemo` will call the wrapped function again and store that result instead.
 
-> **Important**
+> **Note** > **Important**
 >
 > The function we wrap in `useMemo` runs during rendering, this only works for [pure calculations](https://beta.reactjs.org/learn/keeping-components-pure)
 >
