@@ -17,6 +17,8 @@
 - [Effects related challenges](#challenge-11-fetch-data-challenges-related-to-effects)
   - [Mini challenge 1](#mini-challenge-1-updating-state-based-on-props-or-state)
   - [Mini challenge 2](#mini-challenge-2-caching-expensive-calculations)
+- [Passing pros](#challenge-12-passing-props)
+  - [Mini challenge 1](#mini-challenge-1--extract-a-component)
 
 ---
 
@@ -671,7 +673,7 @@ export default function Input({ label, value, onChange }) {
   - `List.js` to list out all contents from `data.js`.
   - `FilterableList.js` as parent component that contains two children above.
   - A way(functionality) of helping us to filter item.
--
+
 
 <details>
 <summary> Original Code </summary>
@@ -841,6 +843,8 @@ export default List({items}) {
 
 - In code above, we move props from child to parent and make children as "controlled" components.
 
+---
+
 ### Challenge 11: Fetch data (challenges related to Effects)
 
 > **Note**
@@ -983,3 +987,229 @@ export default function TodoList({ todos, filter }) {
 > 1. **Minds its own business.** It does not change any objects or variables that existed before it was called.
 >
 > 2. **Same inputs, same outputs**. Given the same inputs, a pure function should always return the same result.
+
+---
+### Challenge 12: passing props
+[React Beta Challenge](https://beta.reactjs.org/learn/passing-props-to-a-component)
+
+#### mini-challenge 1 : Extract a component
+
+This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You’ll need to choose what props to pass to it.
+
+<details>
+<summary> Original Code </summary>
+
+```js
+import { getImageUrl } from './utils.js';
+
+export default function Gallery() {
+  return (
+    <div>
+      <h1>Notable Scientists</h1>
+      <section className="profile">
+        <h2>Maria Skłodowska-Curie</h2>
+        <img
+          className="avatar"
+          src={getImageUrl('szV5sdG')}
+          alt="Maria Skłodowska-Curie"
+          width={70}
+          height={70}
+        />
+        <ul>
+          <li>
+            <b>Profession: </b> 
+            physicist and chemist
+          </li>
+          <li>
+            <b>Awards: 4 </b> 
+            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+          </li>
+          <li>
+            <b>Discovered: </b>
+            polonium (element)
+          </li>
+        </ul>
+      </section>
+      <section className="profile">
+        <h2>Katsuko Saruhashi</h2>
+        <img
+          className="avatar"
+          src={getImageUrl('YfeOqp2')}
+          alt="Katsuko Saruhashi"
+          width={70}
+          height={70}
+        />
+        <ul>
+          <li>
+            <b>Profession: </b> 
+            geochemist
+          </li>
+          <li>
+            <b>Awards: 2 </b> 
+            (Miyake Prize for geochemistry, Tanaka Prize)
+          </li>
+          <li>
+            <b>Discovered: </b>
+            a method for measuring carbon dioxide in seawater
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+```
+</details>
+
+<details>
+<summary>Solution 1</summary>
+
+```js
+// Create a js file to store all datas
+// profilesData.js
+export const profileData = [
+  {
+    id: "0",
+    name: "Maria Skłodowska-Curie",
+    profession: "physicist and chemist",
+    numOfAwards: "4",
+    awardsDestails:
+      "Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal,Matteucci Medal",
+    achievement: "polonium(element)",
+    imgId: "szV5sdG"
+  },
+  {
+    id: "2",
+    name: "Katsuko Saruhashi",
+    profession: "geochemist",
+    numOfAwards: "2",
+    awardsDestails: "Miyake Prize for geochemistry, Tanaka Prize",
+    achievement: "a method for measuring carbon dioxide in seawater",
+    imgId: "YfeOqp2"
+  }
+];
+```
+```js
+// Gallery.jsx
+// datas
+import { profileData } from "./profileData";
+// component
+import Profiles from "./Profiles"
+
+export default function Gallery() {
+  return (
+    <div>
+      <Profiles profiles={profiles}/>
+    </div>
+  )
+}
+```
+```js
+// Profiles.jsx
+import {getImageUrl} from "./utils.js"
+export default function Profiles({ profiles }) {
+    return (
+    <div>
+      <h1>Notable Scientists</h1>
+      {profiles &&
+        profiles.map((profile) => (
+          <section key={profile.name}>
+            <h2>{profile.name}</h2>
+            <img
+              src={getImageUrl(profile.imgId)}
+              alt={profile.name}
+              width={70}
+              height={70}
+            />
+            <ul>
+              <li>
+                <b>Profession: </b>
+                {profile.profession}
+              </li>
+              <li>
+                <b>Awards: {profile.numOfAwards} 
+                </b>
+                ({profile.awardsDestails})
+              </li>
+              <li>
+                <b>Discovered: </b>
+                {profile.achievement}
+              </li>
+            </ul>
+          </section>
+        ))}
+    </div>
+  );
+}
+```
+</details>
+
+<details>
+<summary>Solution 2</summary>
+
+```js
+// Create a js file to store all datas
+// profilesData.js
+export const profileData = [
+  {
+    id: "0",
+    name: "Maria Skłodowska-Curie",
+    profession: "physicist and chemist",
+    numOfAwards: "4",
+    awardsDestails:
+      "Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal,Matteucci Medal",
+    achievement: "polonium(element)",
+    imgId: "szV5sdG"
+  },
+  {
+    id: "2",
+    name: "Katsuko Saruhashi",
+    profession: "geochemist",
+    numOfAwards: "2",
+    awardsDestails: "Miyake Prize for geochemistry, Tanaka Prize",
+    achievement: "a method for measuring carbon dioxide in seawater",
+    imgId: "YfeOqp2"
+  }
+];
+```
+```js
+// Gallery.jsx
+// datas
+import { profileData } from "./profileData";
+import {getImageUrl} from "./utils.js";
+
+export default function Gallery() {
+    const profileItem = profiles.map(profile => {
+    return (
+      <section key={profile.name}>
+            <h2>{profile.name}</h2>
+            <img
+              src={getImageUrl(profile.imgId)}
+              alt={profile.name}
+              width={70}
+              height={70}
+            />
+            <ul>
+              <li>
+                <b>Profession: </b>
+                {profile.profession}
+              </li>
+              <li>
+                <b>Awards: {profile.numOfAwards}</b>({profile.awardsDestails})
+              </li>
+              <li>
+                <b>Discovered: </b>
+                {profile.achievement}
+              </li>
+            </ul>
+          </section>
+    )
+  })
+  return (
+    <div>
+      {profileItem}
+    </div>
+  )
+}
+```
+</details>
+
